@@ -14,32 +14,29 @@ from keras import backend as K
 
 from flask import Flask, request, redirect, jsonify, render_template
 #import deeplearning modules
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import LabelEncoder, StandardScaler
 from keras.utils import to_categorical
+
+
+import pandas as pd
+import numpy as np
+#import sklearn
+from sklearn.preprocessing import LabelEncoder, StandardScaler
+from sklearn.model_selection import train_test_split
+from keras.utils import to_categorical
+from keras.models import Sequential
+from keras.layers import Dense
+from keras.models import load_model
 
 app = Flask(__name__)
 model = None
 graph = None
 
-def load_model():
+def load_model_1():
     global model
     global graph
-    model = keras.models.load_model("loan_model_trained.h5")
+    model = load_model("loan_model_trained.h5")
     graph = K.get_session().graph
 
-load_model()
-
-# def prepare_image(image):
-#     if image.mode != "RGB":
-#         image = image.convert("RGB")
-#     image_size = (28, 28)
-#     image = image.resize(image_size)
-#     # image.save("fromform.png")
-#     image = img_to_array(image)[:,:,0]
-#     image /= 255
-#     image = 1 - image
-#     return image.flatten().reshape(-1, 28*28)
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -75,13 +72,14 @@ def upload_file():
         print(loan_array)
 #
         user_input = pd.DataFrame(data=[loan_array],columns=['Int_Rate','Investment', 'Term', 'Grade', 'Employment_Len','Home_Ownership', 'Annual_Income', 'Purpose', 'State', 'Debt_To_Income','Delinquance_2year'])
+        print(user_input)
 
         #load in our model
         model = keras.models.load_model("loan_model_trained.h5")
         #construct loan_input
         test_loan = pd.read_csv("Loan_Data3.csv")
-
-
+#
+#
         test_loan=test_loan.append(user_input)
 
         #encode the user input row along with the entire loan.csv
@@ -91,25 +89,27 @@ def upload_file():
             if test_loan[column].dtype == type(object):
                 le = LabelEncoder()
                 test_loan[column]=le.fit_transform(test_loan[column].astype(str))
-
+            print(test_loan[column].dtype)    
         X=test_loan.drop("Int_Rate",axis=1)
         y=test_loan["Int_Rate"]
-
+#
         #take one-hot-encoded last row to grab user input
         one_hot_input = test_loan.tail(1)
-
+        print(one_hot_input)
+        
+#
         #drop the temporary Int_Rate from one_hot_input
         one_hot_input = one_hot_input.drop("Int_Rate",axis=1)
 
         #drop tail from dataset to ensure we have it in the train(will put it right back in)
         test_loan = test_loan.drop(test_loan.index[len(test_loan)-1])
-
+        
         #split data into training and test sets
-        X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=.90, test_size=.1, random_state=1, stratify=y)
-
+        X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=.9, test_size=.1, random_state=1)
+        
         #add one hot encoded user input row back to X_train
         X_train=X_train.append(one_hot_input)
-
+##
         #finish fitting and transforming data
         X_scaler = StandardScaler().fit(X_train)
 
@@ -118,7 +118,7 @@ def upload_file():
 
         label_encoder = LabelEncoder()
         label_encoder.fit(y_train)
-
+#
         encoded_y_train = label_encoder.transform(y_train)
         encoded_y_test = label_encoder.transform(y_test)
 
@@ -126,8 +126,8 @@ def upload_file():
         # Step 2: Convert encoded labels to one-hot-encoding
         y_train_categorical = to_categorical(encoded_y_train)
         y_test_categorical = to_categorical(encoded_y_test)
-
-
+#
+#
         #FINAL PREDICTION TIME!!!!!!
 
 
@@ -135,13 +135,14 @@ def upload_file():
 
         prediction_labels = label_encoder.inverse_transform(encoded_predictions)
 
-
+#        print(prediction_labels[-1])
         predicted_int_rate =prediction_labels[-1]
-        #print(predicted_int_rate)
+        print(predicted_int_rate)
 
         # indicate that the request was a success
-        data["prediction"].append(predicted_int_rate) 
+        data["prediction"] = predicted_int_rate
         data["success"] = True
+        print(data)
 
 
 
@@ -149,6 +150,6 @@ def upload_file():
     return render_template("index.html")
 
 if __name__ == "__main__":
-    load_model()
+    load_model_1()
     app.run()
 
