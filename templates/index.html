@@ -91,134 +91,64 @@
                 <legend><i>All fields are required</i></legend>
               </div>
           </div>
-          <form onsubmit="return false">
-        <div class="row">
+          <div class="row">
               <div class="col-md-12 mx-auto">
                         <label>$</label>
-                        <input id="annual_income" type="text" name = "annual_income" placeholder="Income" class="inputs" value="28000">
-                        <label>$</label>
-                        <input id="investment" type="text" name = "investment" placeholder="Investment" class="inputs" value="4000">
-                                        
+                        <input id="income" type="income" placeholder="Income" class="inputs">
+
+                        <input id="job" type="job" placeholder="Job" class="inputs">
               </div>
-          </div> 
-        
-        
-            
+          </div>    
+              </div>
+              <br>
+            </div>
           <hr>
-               
                 <div class="row">
                     <div class = "col-md-12 mx-auto">
+
+                        <fieldset>
+                        
                         <label>$</label>
+
+                        <input id="loan_amount" type="loan" placeholder="Loan Amount" class="inputs">
                         
-                        <input id="dti" type="dti" placeholder="Debt to Income" class="inputs" value="12.3">
-
-                        
-
-                        <input id="delinquency" type="dl" placeholder="Delinquency(days)" class="inputs" value="0">
-
+                        <input id="purpose" type="credit" placeholder="Loan Purpose" class="inputs">
                     
                     </div>  
                   
                 </div>
+                        </fieldset>
                 <hr>
 
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label>Purpose: </label>
-                            <!--medical
-                                debt_consolidation
-                                house
-                                car
-                                credit_card
-                                other
-                                small_business
-                                home_improvement
-                                major_purchase
-                                vacation
-                                renewable_energy
-                                moving
-                                educational
-                                wedding-->
-                            <select name = "term" id="purpose">
-<!--                                <option value="" selected="selected">Select an Option</option>-->
-                                <option value="debt_consolidation">debt consolidation</option>
-                                <option value="house">House</option>
-                                <option value="car">Car</option>
-                                <option value="credit_card">Credit Card</option>
-                                <option value="small_business">Small Business</option>
-                                <option value="home_improvement">Home Improvement</option>
-                                <option value="major_purchase">Major Purchase</option>
-                                <option value="vacation">Vacation</option>
-                                <option value="renewable_energy">Renewable Energy</option>
-                                <option value="moving">Moving</option>
-                                <option value="educational">Educational</option>
-                                <option value="wedding">Wedding</option>
-                            
-                            </select>
-                        </div>
-                    
-                    </div>                    
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label>Home Ownership: </label>
-                            <!--'MORTGAGE', 'RENT', 'OWN', 'ANY', 'NONE'-->
-                            <select name = "home_ownership" id="home_ownership">
-<!--                                <option value="" selected="selected">Select an Option</option>-->
-                                <option value = "MORTGAGE">MORTGAGE</option>
-                                <option value = "RENT">RENT</option>
-                                <option value = "OWN">OWN</option>
-                                <option value = "ANY">ANY</option>
-                                <option value = "NONE">NONE</option>
-                            
-                            </select>
-                        </div>
-                    
-                    </div>                    
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label>Employment Length: </label>
-                            <!--2 years', '9 years', '< 1 year', '7 years', '10+ years', '5 years',
-      '3 years', '1 year', '4 years', 'n/a', '6 years', '8 years'-->
-                            <select name = "employment_length" id="employment_length">
-<!--                                <option value="" selected="selected">Select an Option</option>-->
-                                <option value = "< 1year"><1 year</option>
-                                <option value = "2 years">2 years</option>
-                                <option value = "3 years">3 years</option>
-                                <option value = "4 years">4 years</option>
-                                <option value = "5 years">5 years</option>
-                                <option value = "6 years">6 years</option>
-                                <option value = "7 years">7 years</option>
-                                <option value = "8 years">8 years</option>
-                                <option value = "9 years">9 years</option>
-                                <option value = "10+ years">10+ years</option>
-                            </select>
-                        </div>
-                    
-                    </div>                    
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label>Term: </label>
-                            <!--term - 36, 60 -->
-                            <select name = "term" id="term">
-<!--                                <option value="" selected="selected">Select an Option</option>-->
-                                <option value="36">36 Months</option>
-                                <option value="60">60 Months</option>
-                            </select>
-                        </div>
-                    
+          
                     </div>
+                </div>
+                <div class="row">
+                    <div class = "col-md-12 mx-auto">
+
+                        <fieldset>
+                                
+                        <input id="load_term" type="term" placeholder="Loan Term" class="inputs">
+                        
+                        <input id="dti" type="dti" placeholder="Debt to Income" class="inputs">
+                   
+                    </div>  
+                  
+                </div>
+                    <hr>
                 <div class="row">
                     
                     <div class = "col-md-12">
                         <label>Credit Score:</label>
-                      <select name="grade" placeholder="Credit Score" id="grade">
-<!--                        <option value="" selected="selected">Select an Option</option>-->
+                      <select name="credit_score" placeholder="Credit Score">
+                        <option value="" selected="selected">Select an Option</option>
                         <option value="A">Over 670</option>
                         <option value="B">550-670</option>
                         <option value="C">400-550</option>
                         <option value="D">300-400</option>
                         <option value = "E">200-300</option>
+                        <option value="F">100-200</option>
+                        <option value="G">Lower than</option>
 
                         </select>
                     </div>    
@@ -228,7 +158,7 @@
                     <div class = "col-md-12">
                         <label>State:</label>
                             <select name="state" id="state">
-<!--                              <option value="" selected="selected">Select a State</option>-->
+                              <option value="" selected="selected">Select a State</option>
                               <option value="AL">Alabama</option>
                               <option value="AK">Alaska</option>
                               <option value="AZ">Arizona</option>
@@ -284,12 +214,13 @@
                     </div>    
                 </div>                    
                     
-                        
+                        </fieldset>
                 <hr>
-                <button class="pure-button pure-button-primary" id="submit_button">Generate!</button>
+                <button type="submit" class="pure-button pure-button-primary" id="submit_button">Generate!</button>
 
           
-          </form>
+                    </div>
+                </div>
     </section>
 
     <section class="features" id="features">
@@ -298,12 +229,10 @@
           <h2>Interest Rate</h2>
           <hr>
           <div class="row">
-            <div class="col-m8-8">
-              <div id="chart_div" style="margin-left: auto; margin-right: auto"></div>
-            </div>
-            <div class="col-md-4">
-              <!-- Make a script to populate with different texts depending on value of the interest rate -->
-              <p> Holder Text incase we can't make a new script for this </p>
+            <div class="col-md-12">
+              <div class="centerBlock">
+                <div id="chart_div"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -327,12 +256,9 @@
             </a>
           </div>
           <div class = "col-md-6">
-            <span class = "c_txt_m_under"><strong><h3>Holder Title</h3></strong></span>
+            <span class = "c_txt_m_under"><strong><h3>Correlation: Interest Rate vs...</h3></strong></span>
             <br>
-            <p>Holder Text</p>
-            <p>Holder Text</p>
-            <p>Holder Text</p>
-            <p>Holder Text</p>
+            <p>In order to calculate optimal interest rate for a lender/requestor, different input variables were analyzed to determine the overall effect on interest rate. As the graphs show, investment amount and annual income have minimal correlation to interest rate, while dept to income has a relatively strong correlation. Credit grade, which is a amalgamation of the three aforementioned variables, has the strongest correlation to interest rate.</p>
           </div>
         </div>
 
@@ -340,10 +266,7 @@
           <div class = "col-md-6">
             <span class = "c_txt_m_under"><strong><h3>Holder Title</h3></strong></span>
             <br>
-            <p>Holder Text</p>
-            <p>Holder Text</p>
-            <p>Holder Text</p>
-            <p>Holder Text</p>
+            <p> The debt to income ratio determines the liquidity and ability to pay back by the borrower. The lowest DTI by state ranking shows: DC 15.670, NJ 16.696, CA 17.719. Debt consolidation had the highest interest rate bracket of 21.45% and Renewable energy follows with 14.22%.
           </div>
           <div class = "col-md-6">
             <a href = "/static/img/Avg_Invest.png" target = "_blank">
@@ -359,12 +282,9 @@
             </a>
           </div>
           <div class = "col-md-6">
-            <span class = "c_txt_m_under"><strong><h3>Holder Title</h3></strong></span>
+            <span class = "c_txt_m_under"><strong><h3>It was the Heat of the Int</h3></strong></span>
             <br>
-            <p>Holder Text</p>
-            <p>Holder Text</p>
-            <p>Holder Text</p>
-            <p>Holder Text</p>           
+            <p>The above heat maps plot interest rate and investment amounts across the United States. On a state by state basis, the interest rate, on average, is inversely proportional to the amount loaned. That is to say, the states that received more loans have generally lower interest rates.</p>           
           </div>
         </div>          
         
@@ -388,11 +308,6 @@
 
     <!-- Custom scripts for this template -->
     <script src="/static/js/new-age.min.js"></script>
-    <!-- D3 script -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.js"></script>
-    <!--submit -->
-    <script src="/static/js/submit.js"></script>
-
 
     <!-- Chart Scrpit -->
     <script src="/static/js/chart.js"></script>

@@ -21,3 +21,8 @@ hr{
 	text-align: center;
 	margin-bottom: 25px;
 }
+
+.centerBlock {
+  display: table;
+  margin: auto;
+}
