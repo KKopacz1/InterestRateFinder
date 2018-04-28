@@ -1,12 +1,15 @@
 google.charts.load('current', {'packages':['gauge']});
 google.charts.setOnLoadCallback(drawChart);
 
-function drawChart() {
+//AP Comment: added parameter to drawchart function to pass the predicted interest rate
+function drawChart(rate) {
 
   var data = google.visualization.arrayToDataTable([
     ['Label', 'Value'],
     /* Add the Script value here - Might need a new route on app.py */
-    ['Rate', 32.0],
+    //AP Comment: remoed hard coded rate and using predicted rate variable
+    // ['Rate', 32.0],
+    ['Rate', rate],
   ]);
 
   var options = {

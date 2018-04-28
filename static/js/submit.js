@@ -48,6 +48,8 @@ d3.select("#submit_button").on("click", function(){
     
     $.post(url, data)
       .then(function(data) {
-      console.log(data)   
+      console.log(data) 
+      d3.select("#rate").text(data)
+      drawChart(data)
      });
 })

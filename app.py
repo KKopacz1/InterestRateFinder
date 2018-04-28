@@ -41,7 +41,7 @@ def load_model_1():
 
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
-    data = {"success": False}
+    #data = {"success": False}
     if request.method == 'POST':
         # read the base64 encoded string
         #image_string = request.form.get('digit')
@@ -140,14 +140,16 @@ def upload_file():
         print(predicted_int_rate)
 
         # indicate that the request was a success
-        data["prediction"] = predicted_int_rate
-        data["success"] = True
-        print(data)
+        #data["prediction"] = predicted_int_rate
+        #data["success"] = True
+        result=predicted_int_rate
+        print(result)
 
 
 
-        return jsonify(data)
+        return jsonify(result)
     return render_template("index.html")
+
 
 if __name__ == "__main__":
     load_model_1()
